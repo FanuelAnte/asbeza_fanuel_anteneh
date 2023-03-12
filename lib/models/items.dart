@@ -1,9 +1,10 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 class Item {
   int id;
   String title;
-  double price;
+  num price;
   String description;
   String category;
   String image;
@@ -25,5 +26,13 @@ class Item {
         description: parsedJson['description'],
         category: parsedJson['category'],
         image: parsedJson['image']);
+  }
+
+  static List ItemList(List items) {
+    List parsedItems = [];
+    for (var i = 0; i < items.length; i++) {
+      parsedItems.add(Item.fromJson(items[i]));
+    }
+    return parsedItems;
   }
 }

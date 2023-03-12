@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc/item_bloc/item_bloc.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -14,19 +16,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      // initialRoute: '/',
-      // routes: {
-      //   '/': (context) => HomePage(),
-      //   '/history': (context) => HistoryPage(),
-      //   '/profile': (context) => ProfilePage(),
-      // },
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return BlocProvider(
+      create: (context) => ItemBloc(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        // initialRoute: '/',
+        // routes: {
+        //   '/': (context) => HomePage(),
+        //   '/history': (context) => HistoryPage(),
+        //   '/profile': (context) => ProfilePage(),
+        // },
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: NavigationWidget(),
       ),
-      home: NavigationWidget(),
     );
   }
 }
@@ -46,6 +51,9 @@ class _NavigationWidgetState extends State<NavigationWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("App"),
+      ),
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,

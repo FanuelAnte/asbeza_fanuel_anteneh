@@ -3,7 +3,7 @@ import 'package:asbeza/models/items.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServiceProvider {
-  Future<Item?> fetchActivity() async {
+  Future<List?> fetchActivity() async {
     final response = await http.get(
       Uri.parse('https://fakestoreapi.com/products'),
       headers: <String, String>{
@@ -12,7 +12,7 @@ class ApiServiceProvider {
       },
     );
     if (response.statusCode == 200) {
-      return Item.fromJson(json.decode(response.body));
+      return Item.ItemList(json.decode(response.body));
     } else {
       throw Exception('Failed to load');
     }
