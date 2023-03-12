@@ -1,3 +1,4 @@
+import 'package:asbeza/bloc/history_bloc/history_bloc.dart';
 import 'package:asbeza/views/history.dart';
 import 'package:asbeza/views/home.dart';
 import 'package:asbeza/views/profile.dart';
@@ -16,8 +17,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ItemBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ItemBloc(),
+        ),
+        BlocProvider(
+          create: (context) => HistoryBloc(),
+        )
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
@@ -52,7 +60,7 @@ class _NavigationWidgetState extends State<NavigationWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("App"),
+        title: Text("Asbeza"),
       ),
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(

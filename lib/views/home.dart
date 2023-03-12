@@ -61,6 +61,7 @@ class ItemsBuilder extends StatelessWidget {
             itemImage: itemsList[index].image,
             itemName: itemsList[index].title,
             itemPrice: itemsList[index].price,
+            page: "home",
           );
         });
   }

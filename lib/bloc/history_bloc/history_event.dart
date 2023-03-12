@@ -6,3 +6,28 @@ abstract class HistoryEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class HistoryFetchEvent extends HistoryEvent {
+  const HistoryFetchEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class AddHistoryItemEvent extends HistoryEvent {
+  Item currentItem;
+
+  AddHistoryItemEvent({required this.currentItem});
+
+  @override
+  List<Object> get props => [];
+}
+
+class RemoveHistoryItemEvent extends HistoryEvent {
+  Item currentItem;
+
+  RemoveHistoryItemEvent({required this.currentItem});
+
+  @override
+  List<Object> get props => [];
+}

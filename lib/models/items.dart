@@ -5,16 +5,16 @@ class Item {
   int id;
   String title;
   num price;
-  String description;
-  String category;
+  // String description;
+  // String category;
   String image;
 
   Item({
     required this.id,
     required this.title,
     required this.price,
-    required this.description,
-    required this.category,
+    // required this.description,
+    // required this.category,
     required this.image,
   });
 
@@ -23,8 +23,8 @@ class Item {
         id: parsedJson['id'],
         title: parsedJson['title'],
         price: parsedJson['price'],
-        description: parsedJson['description'],
-        category: parsedJson['category'],
+        // description: parsedJson['description'],
+        // category: parsedJson['category'],
         image: parsedJson['image']);
   }
 
