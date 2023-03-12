@@ -76,8 +76,8 @@ class ActionButton extends StatelessWidget {
         onPressed: () => {
           BlocProvider.of<HistoryBloc>(context)
               .add(AddHistoryItemEvent(currentItem: currentItem)),
-          BlocProvider.of<HistoryBloc>(context).price + currentItem.price,
-          print(BlocProvider.of<HistoryBloc>(context).historyItems)
+          BlocProvider.of<HistoryBloc>(context).price += currentItem.price,
+          print(BlocProvider.of<HistoryBloc>(context).price)
         },
         child: Icon(Icons.add),
       );
@@ -86,7 +86,7 @@ class ActionButton extends StatelessWidget {
         onPressed: () => {
           BlocProvider.of<HistoryBloc>(context)
               .add(RemoveHistoryItemEvent(currentItem: currentItem)),
-          BlocProvider.of<HistoryBloc>(context).price - currentItem.price,
+          BlocProvider.of<HistoryBloc>(context).price -= currentItem.price,
           print(BlocProvider.of<HistoryBloc>(context).historyItems)
         },
         child: Icon(Icons.remove),

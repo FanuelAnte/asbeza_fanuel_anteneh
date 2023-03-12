@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           // BlocProvider.of<ItemBloc>(context).add(const ItemFetchEvent());
         }
         if (state is ItemLoading) {
-          return Text("loading");
+          return Center(child: CircularProgressIndicator());
         }
         if (state is ItemSuccess) {
           return Container(

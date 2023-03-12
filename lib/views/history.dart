@@ -28,15 +28,20 @@ class _HistoryPageState extends State<HistoryPage> {
           // BlocProvider.of<ItemBloc>(context).add(const ItemFetchEvent());
         }
         if (state is HistoryLoading) {
-          return Text("loading");
+          return Center(child: CircularProgressIndicator());
         }
         if (state is HistorySuccess) {
-          return Container(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              // child: Text('${state.items}'),
-              child: ItemsBuilder(itemsList: state.historyItems),
-            ),
+          return Column(
+            children: [
+              Center(
+                  child:
+                      Text('${BlocProvider.of<HistoryBloc>(context).price}')),
+              Expanded(
+                // width: MediaQuery.of(context).size.width,
+                // child: Text('${state.items}'),
+                child: ItemsBuilder(itemsList: state.historyItems),
+              ),
+            ],
           );
         } else {
           return Text("error");

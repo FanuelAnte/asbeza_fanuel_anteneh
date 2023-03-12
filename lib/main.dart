@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
         // initialRoute: '/',
         // routes: {
         //   '/': (context) => HomePage(),
@@ -59,9 +58,7 @@ class _NavigationWidgetState extends State<NavigationWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Asbeza"),
-      ),
+      appBar: AppBar(title: Text("Asbeza")),
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,

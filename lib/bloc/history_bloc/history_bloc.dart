@@ -11,7 +11,7 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
   num price = 0;
 
   HistoryBloc() : super(HistoryInitial()) {
-    on<HistoryFetchEvent>((event, emit) {
+    on<HistoryFetchEvent>((event, emit) async {
       emit(HistoryLoading());
       emit(HistorySuccess(historyItems));
     });
