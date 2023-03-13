@@ -34,12 +34,15 @@ class _HistoryPageState extends State<HistoryPage> {
           return Column(
             children: [
               Center(
-                  child:
-                      Text('${BlocProvider.of<HistoryBloc>(context).price}')),
+                  child: Text(
+                      '${BlocProvider.of<HistoryBloc>(context).itemsMap}')),
+              Center(
+                  child: Text(
+                      '${BlocProvider.of<HistoryBloc>(context).price.round()}')),
               Expanded(
                 // width: MediaQuery.of(context).size.width,
                 // child: Text('${state.items}'),
-                child: ItemsBuilder(itemsList: state.historyItems),
+                child: ItemsBuilder(itemsList: state.itemsMap.keys.toList()),
               ),
             ],
           );

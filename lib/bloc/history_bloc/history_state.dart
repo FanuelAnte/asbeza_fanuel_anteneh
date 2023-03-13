@@ -13,6 +13,7 @@ class HistoryLoading extends HistoryState {}
 
 class HistorySuccess extends HistoryState {
   final List historyItems;
+  final Map itemsMap;
 
-  HistorySuccess(this.historyItems);
+  HistorySuccess(this.historyItems, this.itemsMap);
 }
