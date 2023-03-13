@@ -34,27 +34,26 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
       emit(HistoryLoading());
       // historyItems.removeWhere((element) => element.id == event.currentItem.id);
 
-      final int historyItemIndex = historyItems
-          .indexWhere((element) => element.id == event.currentItem.id);
-      print(historyItemIndex);
-      historyItems.removeAt(historyItemIndex);
-
       // itemsMap[event.currentItem] = itemsMap[event.currentItem] - 1;
 
-      // itemsMap[historyItems
-      //     .firstWhere((element) => element.id == event.currentItem.id)] -= 1;
-
       itemsMap[historyItems
-              .firstWhere((element) => element.id == event.currentItem.id)] =
-          historyItems
-              .where((element) => element.id == event.currentItem.id)
-              .length;
+          .firstWhere((element) => element.id == event.currentItem.id)] -= 1;
 
-      if (itemsMap[historyItems
-              .firstWhere((element) => element.id == event.currentItem.id)] ==
-          0) {
-        itemsMap.remove(historyItems
-            .firstWhere((element) => element.id == event.currentItem.id));
+      // final int historyItemIndex = historyItems
+      //     .indexWhere((element) => element.id == event.currentItem.id);
+      // print(historyItemIndex);
+      // historyItems.removeAt(historyItemIndex);
+
+      // itemsMap[historyItems
+      //         .firstWhere((element) => element.id == event.currentItem.id)] =
+      //     historyItems
+      //         .where((element) => element.id == event.currentItem.id)
+      //         .length;
+
+      for (var i = 0; i < itemsMap.keys.toList().length; i++) {
+        if (itemsMap[itemsMap.keys.toList()[i]] == 0) {
+          itemsMap.remove(itemsMap.keys.toList()[i]);
+        }
       }
 
       emit(HistorySuccess(historyItems, itemsMap));
