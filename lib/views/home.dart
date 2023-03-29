@@ -17,14 +17,7 @@ class _HomePageState extends State<HomePage> {
     return BlocBuilder<ItemBloc, ItemState>(
       builder: (context, state) {
         if (state is ItemInitial) {
-          return Center(
-            child: ElevatedButton(
-              onPressed: () => BlocProvider.of<ItemBloc>(context)
-                  .add(const ItemFetchEvent()),
-              child: Text("Get"),
-            ),
-          );
-          // BlocProvider.of<ItemBloc>(context).add(const ItemFetchEvent());
+          BlocProvider.of<ItemBloc>(context).add(const ItemFetchEvent());
         }
         if (state is ItemLoading) {
           return Center(child: CircularProgressIndicator());
@@ -33,7 +26,6 @@ class _HomePageState extends State<HomePage> {
           return Container(
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
-              // child: Text('${state.items}'),
               child: ItemsBuilder(itemsList: state.items),
             ),
           );

@@ -1,4 +1,3 @@
-import 'package:asbeza/bloc/history_bloc/history_bloc.dart';
 import 'package:asbeza/views/history.dart';
 import 'package:asbeza/views/home.dart';
 import 'package:asbeza/views/profile.dart';
@@ -22,9 +21,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ItemBloc(),
         ),
-        BlocProvider(
-          create: (context) => HistoryBloc(),
-        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

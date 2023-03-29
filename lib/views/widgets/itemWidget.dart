@@ -2,7 +2,6 @@ import 'package:asbeza/models/items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/history_bloc/history_bloc.dart';
 import '../../bloc/item_bloc/item_bloc.dart';
 
 class ItemWidget extends StatelessWidget {
@@ -22,7 +21,7 @@ class ItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HistoryBloc, HistoryState>(
+    return BlocBuilder<ItemBloc, ItemState>(
       builder: (context, state) {
         Item currentItem = Item(
           id: id,
@@ -30,31 +29,38 @@ class ItemWidget extends StatelessWidget {
           price: itemPrice,
           title: itemName,
         );
-        return Container(
-          child: Row(
-            children: [
-              SizedBox(
-                height: 100,
-                width: 100,
-                child: Image.network(itemImage),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(itemName, overflow: TextOverflow.ellipsis),
-                    Text('$itemPrice'),
-                    ActionButton(
-                      currentItem: currentItem,
-                      page: page,
-                    ),
-                  ],
+        return Padding(
+          padding: const EdgeInsets.all(5),
+          child: Container(
+            color: Colors.blueGrey[100],
+            child: Row(
+              children: [
+                SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: Image.network(itemImage),
                 ),
-              ),
-            ],
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(itemName, overflow: TextOverflow.ellipsis),
+                      Text('$itemPrice'),
+                      SizedBox(
+                        height: 25,
+                        child: ActionButton(
+                          currentItem: currentItem,
+                          page: page,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -72,22 +78,14 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (page == "home") {
-      return ElevatedButton(
-        onPressed: () => {
-          BlocProvider.of<HistoryBloc>(context)
-              .add(AddHistoryItemEvent(currentItem: currentItem)),
-          BlocProvider.of<HistoryBloc>(context).price += currentItem.price,
-        },
-        child: Icon(Icons.add),
+      return IconButton(
+        onPressed: () => {},
+        icon: const Icon(Icons.add),
       );
     } else if (page == "history") {
-      return ElevatedButton(
-        onPressed: () => {
-          BlocProvider.of<HistoryBloc>(context)
-              .add(RemoveHistoryItemEvent(currentItem: currentItem)),
-          BlocProvider.of<HistoryBloc>(context).price -= currentItem.price,
-        },
-        child: Icon(Icons.remove),
+      return IconButton(
+        onPressed: () => {},
+        icon: const Icon(Icons.remove),
       );
     } else {
       return Container();
