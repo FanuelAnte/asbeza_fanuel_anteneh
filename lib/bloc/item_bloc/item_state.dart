@@ -13,6 +13,7 @@ class ItemLoading extends ItemState {}
 
 class ItemSuccess extends ItemState {
   final List items;
+  final Map<int, int> cartItems;
 
-  ItemSuccess({required this.items});
+  ItemSuccess({required this.items, required this.cartItems});
 }

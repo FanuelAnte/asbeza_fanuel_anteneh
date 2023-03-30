@@ -5,6 +5,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../models/items.dart';
+
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
 
@@ -24,12 +26,12 @@ class _HistoryPageState extends State<HistoryPage> {
           return Center(child: CircularProgressIndicator());
         }
         if (state is ItemSuccess) {
+          print(state.cartItems);
           return Column(
             children: [
               Expanded(
-                // width: MediaQuery.of(context).size.width,
-                // child: Text('${state.items}'),
-                child: ItemsBuilder(itemsList: state.items),
+                child: ItemsBuilder(
+                    itemsList: parseCartMap(state.items, state.cartItems)),
               ),
             ],
           );
@@ -39,6 +41,18 @@ class _HistoryPageState extends State<HistoryPage> {
       },
     );
   }
+}
+
+List<dynamic> parseCartMap(List<dynamic> items, Map<int, int> cartItems) {
+  List<dynamic> cartList = [];
+
+  for (var element in items) {
+    if (cartItems[element.id]! > 0) {
+      cartList.add(element);
+    }
+  }
+
+  return cartList;
 }
 
 class ItemsBuilder extends StatelessWidget {

@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
           return Center(child: CircularProgressIndicator());
         }
         if (state is ItemSuccess) {
+          // print(state.cartItems);
           return Container(
             child: SizedBox(
               width: MediaQuery.of(context).size.width,

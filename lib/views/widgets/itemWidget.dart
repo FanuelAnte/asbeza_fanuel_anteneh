@@ -79,12 +79,19 @@ class ActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     if (page == "home") {
       return IconButton(
-        onPressed: () => {},
+        onPressed: () => {
+          BlocProvider.of<ItemBloc>(context)
+              .add(AddCartItemEvent(currentItemId: currentItem.id)),
+        },
         icon: const Icon(Icons.add),
       );
     } else if (page == "history") {
       return IconButton(
-        onPressed: () => {},
+        onPressed: () => {
+          BlocProvider.of<ItemBloc>(context)
+              .add(RemoveCartItemEvent(currentItemId: currentItem.id)),
+          // BlocProvider.of<HistoryBloc>(context).price += currentItem.price,
+        },
         icon: const Icon(Icons.remove),
       );
     } else {
